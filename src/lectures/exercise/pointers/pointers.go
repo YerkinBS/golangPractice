@@ -51,4 +51,6 @@ func main() {
 	fmt.Println("Item 3 deactivated", itemSlice)
 	checkout(itemSlice)
 	fmt.Println("Checked out", itemSlice)
+	activate(&itemSlice[3])
+	fmt.Println("Item 4 activated", itemSlice)
 }
