@@ -34,16 +34,6 @@ func displayServer(serverStatus map[string]int) {
 	
 	onlineServCnt, offlineServCnt, maintServCnt, retiredServCnt := 0, 0, 0, 0
 	for _, status := range serverStatus {
-		// if status == Online {
-		// 	onlineServCnt += 1
-		// } else if status == Offline {
-		// 	offlineServCnt += 1
-		// } else if status == Maintenance {
-		// 	maintServCnt += 1
-		// } else if status == Retired {
-		// 	retiredServCnt += 1
-		// }   
-
 		switch status {
 		case Online:
 			onlineServCnt += 1

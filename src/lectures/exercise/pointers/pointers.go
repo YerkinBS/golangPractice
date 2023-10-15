@@ -18,10 +18,37 @@ package main
 
 import "fmt"
 
-type item struct {
-	var name string
+const (
+	active = true
+	inactive = false
+)
+
+type Item struct {
+	name string
+	securityTag bool
+}
+
+func activate(item *Item) {
+	item.securityTag = true
+}
+
+func deactivate(item *Item) {
+	item.securityTag = false
+}
+
+func checkout(itemsList []Item) {
+	for i := 0; i < len(itemsList); i++ {
+		deactivate(&itemsList[i])
+	}
 }
 
 func main() {
+	stool, rope, soap, paper := Item {"Stool", active}, Item {"Rope", active}, Item {"Soap", active}, Item {"Paper", active}
+	itemSlice := []Item{stool, rope, soap, paper}
 
+	fmt.Println("Initial", itemSlice)
+	deactivate(&itemSlice[2])
+	fmt.Println("Item 3 deactivated", itemSlice)
+	checkout(itemSlice)
+	fmt.Println("Checked out", itemSlice)
 }
