@@ -18,6 +18,10 @@ package main
 
 import "fmt"
 
+type item struct {
+	var name string
+}
+
 func main() {
 
 }
