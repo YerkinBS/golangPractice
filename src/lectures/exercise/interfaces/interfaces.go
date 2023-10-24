@@ -21,6 +21,37 @@ package main
 
 import "fmt"
 
-func main() {
+type Handler interface {
+	HandleVehicle()
+}
 
+type Motorcycle string
+type Car string
+type Truck string
+
+func (m Motorcycle) HandleVehicle() {
+	fmt.Println("small lift")
+}
+
+func (c Car) HandleVehicle() {
+	fmt.Println("standart lift")
+}
+
+func (t Truck) HandleVehicle() {
+	fmt.Println("large lift")
+}
+
+func HandleVehicles(vehicles []Handler) {
+	fmt.Println("Handling vehicles:")
+	for i := 0; i < len(vehicles); i++ {
+		vehicle := vehicles[i]
+		fmt.Printf(" --Vehicle: %v --> ", vehicle)
+		vehicle.HandleVehicle()
+	}
+	fmt.Println()
+}
+
+func main() {
+	vehicles := []Handler{Motorcycle("Yamaha"), Car("Toyota"), Truck("Zeekr")}
+	HandleVehicles(vehicles)
 }
