@@ -16,7 +16,6 @@
 //--Notes
 //* Use any Reader implementation from the stdlib to implement the program
 
-
 // This is my solution:
 package main
 
@@ -62,7 +61,6 @@ func main() {
 	fmt.Println("The number of commands entered:", commandsNum)
 }
 
-
 //This is professors solution:
 // package main
 
@@ -76,7 +74,7 @@ func main() {
 // const (
 // 	CmdHello = "hello"
 // 	CmdGoodbye = "bye"
-// )	
+// )
 
 // func main() {
 // 	scanner := bufio.NewScanner(os.Stdin)

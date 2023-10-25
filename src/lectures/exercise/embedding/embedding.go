@@ -23,16 +23,56 @@ type BandwidthUsage struct {
 	amount []Bytes
 }
 
+func (b BandwidthUsage) AverageBandwidth() Bytes {
+	var sum Bytes
+	for i := 0; i < 5; i++ {
+		sum += b.amount[i]
+	}
+	return sum / 5
+}
+
 type CpuTemp struct {
 	temp []Celcius
+}
+
+func (c CpuTemp) AverageCpuTemp() Celcius {
+	var sum Celcius
+	for i := 0; i < 5; i++ {
+		sum += c.temp[i]
+	}
+	return sum / 5.0
 }
 
 type MemoryUsage struct {
 	amount []Bytes
 }
 
+func (m MemoryUsage) AverageMemoryUsage() Bytes {
+	var sum Bytes
+	for i := 0; i < 5; i++ {
+		sum += m.amount[i]
+	}
+	return sum / 5
+}
+
+type Dashboard struct {
+	BandwidthUsage
+	CpuTemp
+	MemoryUsage
+}
+
 func main() {
 	bandwidth := BandwidthUsage{[]Bytes{50000, 100000, 130000, 80000, 90000}}
 	temp := CpuTemp{[]Celcius{50, 51, 53, 51, 52}}
 	memory := MemoryUsage{[]Bytes{800000, 800000, 810000, 820000, 800000}}
+
+	dash := Dashboard{
+		BandwidthUsage: bandwidth,
+		CpuTemp:        temp,
+		MemoryUsage:    memory,
+	}
+
+	fmt.Printf("Average 5 second bandwidth usage: %v\n", dash.AverageBandwidth())
+	fmt.Printf("Average 5 second Cpu temperature: %v\n", dash.AverageCpuTemp())
+	fmt.Printf("Average 5 second memory usage: %v\n", dash.AverageMemoryUsage())
 }
