@@ -58,13 +58,13 @@ func automate(item WarehouseAutomator) {
 	fmt.Printf("Ship %v via %v\n", item, item.Ship())
 }
 
-type ToxicWaste struct {
-	weight int
-}
+// type ToxicWaste struct {
+// 	weight int
+// }
 
-func (t *ToxicWaste) Ship() Shipping {
-	return Ground
-}
+// func (t *ToxicWaste) Ship() Shipping {
+// 	return Ground
+// }
 
 func main() {
 	mail := SpamMail{40000}
