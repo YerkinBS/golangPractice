@@ -31,9 +31,45 @@ import (
 	"io"
 	"os"
 	"strconv"
+	"strings"
 	"time"
 )
 
+func fileSum(filename string, sum *int){
+	file, err := os.Open(filename)
+	if err != nil {
+		fmt.Println("Error:", err)
+		return
+	}
+	defer file.Close()
+
+	reader := bufio.NewReader(file)
+
+	for {
+		line, err := reader.ReadString('\n')
+		if err == io.EOF {
+			break
+		} else if err != nil {
+			fmt.Println("Error:", err)
+			continue
+		}
+		num, err := strconv.Atoi(strings.TrimRight(line, "\n"))
+		if err != nil {
+			fmt.Println("Error:", err)
+			continue
+		}
+		*sum += num
+	}
+}
+
 func main() {
 	files := []string{"num1.txt", "num2.txt", "num3.txt", "num4.txt", "num5.txt"}
+
+	result := 0
+	for _, filename := range(files) {
+		go fileSum(filename, &result)
+		time.Sleep(100 * time.Millisecond)
+		fmt.Printf("File named %v checked up\n\n", filename)
+	}
+	fmt.Println("The Grand Total:", result)
 }
